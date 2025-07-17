@@ -1,10 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    外层加封装，然后此处放置VM-->
+    <data>
+        <variable
+            name="dagger_vm"
+            type="com.example.daggeruse.mvvmdagger.MainViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--        1. 注意配置文件dataBinding=True
+        2. 注意onClick事件dagger_vm::onButtonClick参数View要写,也可以
+        按照下面的方式-->
+        <Button
+            android:id="@+id/btn_dagger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{dagger_vm.buttonText}"
+            android:onClick="@{(view) -> dagger_vm.onButtonClick(view)}"/>
+
+        <Button
+            android:id="@+id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/btn_dagger"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="拍照"
+            android:onClick="@{(view) -> dagger_vm.onButtonClick(view)}"/>
+
+        <ImageView
+            android:contentDescription="photo"
+            android:id="@+id/iv_share"
+            android:layout_width="20dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@+id/btn_share"
+            app:layout_constraintStart_toStartOf="@+id/btn_share"
+            android:imageURI="@{dagger_vm.imageUri}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

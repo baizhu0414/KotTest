@@ -3,10 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 相机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" tools:ignore="MissingUsesFeature" />
+    <!-- Android 13及以上需替换存储权限 -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+
+    <!-- 存储权限（仅适用于Android 10以下版本） -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <!-- Android11+声明需要访问的应用包名（微信） -->
+    <queries>
+        <package android:name="com.tencent.mm" />
+    </queries>
 
 
     <application
-        android:name=".MyApp"
+        android:name="com.example.launcher.MyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -15,7 +34,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KotTest"
-        tools:targetApi="31">
+        android:requestLegacyExternalStorage="true"
+        android:networkSecurityConfig="@xml/netconfig"
+        tools:replace="android:label,android:allowBackup">
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,6 +46,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <provider
+            android:name="com.example.provider.MyFileProvider"
+            android:authorities="com.example.kottest.myfileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"><!-- 允许授予临时权限 -->
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

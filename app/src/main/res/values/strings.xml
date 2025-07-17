@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KotTest</string>
+    <string name="dagger_btn_txt">Dagger注入使用</string>
 </resources>

@@ -6,6 +6,9 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
+/**
+ * 因为是单例类，所以要在Application中初始化。
+ */
 @Singleton // 配合Provide的单例，此处必须加注解
 @Component(modules = [NetworkModule::class, DatabaseModule::class])
 interface NetworkDatabaseComponent {

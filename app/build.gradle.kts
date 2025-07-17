@@ -27,6 +27,9 @@ android {
             )
         }
     }
+    buildFeatures {
+        dataBinding = true // 开启MVVM
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -46,6 +49,10 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // MVVM依赖库
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     // Dagger核心库（仅涉及逻辑）
     implementation("com.google.dagger:dagger:2.24")

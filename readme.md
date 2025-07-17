@@ -11,8 +11,11 @@
 2. Dagger+Retrofit+Room使用Kotlin测试
 	- 代码在`src\main\java\com\example`目录下
 	- Dagger2主要划分Module（Provider）-Component(桥梁)-Client(Inject)
+3. MVVM使用
+4. 调用相机
+5. installProvider初始化延迟
 
-3. 此项目要求：
+6. 此项目要求：
 ```kotlin
 minSdk = 24
 compileSdk = 35

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- 匹配代码中getExternalFilesDir("Pictures/my_external")的路径 -->
+    <external-files-path
+        name="my_images"
+        path="Pictures/my_external" />
+</paths>
